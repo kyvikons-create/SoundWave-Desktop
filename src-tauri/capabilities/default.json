@@ -1,0 +1,15 @@
+{
+  "identifier": "default",
+  "description": "звук и сеть для моста soundcloud",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    {
+      "identifier": "http:default",
+      "allow": [
+        { "url": "https://**" },
+        { "url": "http://**" }
+      ]
+    }
+  ]
+}
