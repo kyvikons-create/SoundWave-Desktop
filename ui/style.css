@@ -393,6 +393,30 @@ html[data-theme="light"] .share-ph{background:#e8e8ee}
 .hist-clear{font-size:12px;font-weight:650;color:var(--t2);padding:4px 10px;border-radius:10px;background:var(--card2);border:1px solid var(--line2)}
 .hist-clear:active{transform:scale(.95)}
 
+/* ===== Desktop shell ===== */
+@media (min-width: 900px) and (min-height: 620px){
+  #app{flex-direction:row}
+  .tabbar{
+    order:-1;position:relative;left:auto;right:auto;bottom:auto;width:92px;
+    flex-direction:column;justify-content:flex-start;gap:6px;
+    border-top:none;border-right:1px solid var(--line2);
+    padding:18px 12px;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0);
+    background:color-mix(in srgb,var(--bg) 88%,transparent)
+  }
+  .tab{flex:none;width:100%;padding:11px 8px;border-radius:16px}
+  .tab span{font-size:11px}
+  .mini{left:112px;right:18px;bottom:18px}
+  .scroll{padding:calc(var(--st) + 22px) 30px calc(120px + var(--sb))}
+  .hero-t{font-size:clamp(48px,7vw,82px)}
+  .hero-s{font-size:16px}
+  .ltitle{font-size:38px}
+  .searchbar{height:56px;max-width:760px}
+  .np-scroll{max-width:1000px}
+  .np-artwrap{width:min(34vw,420px)}
+  .np-title{font-size:30px}
+  .np-artist{font-size:20px}
+}
+
 /* ===== Font scale (var(--fs)) — additive overrides, identity at --fs:1 ===== */
 .t-title{font-size:calc(15.5px * var(--fs,1))}
 .t-artist{font-size:calc(13px * var(--fs,1))}
