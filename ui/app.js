@@ -130,13 +130,15 @@ async function rawFetch(url){
   let order = [];
   if (window.__swNativeFetch) order.push('native');
   if (localProxy) order.push('local');
-  order.push('direct', 'p1', 'p2');
+  if (location.protocol === 'https:' || location.protocol === 'http:') order.push('direct');
+  order.push('p1', 'p2');
   if (transport !== 'auto') order = [transport, ...order.filter(t => t !== transport)];
   let lastErr;
   for (const t of order){
     try {
       if (t === 'native'){
         const r = await withTimeoutMs(window.__swNativeFetch(url), 20000);
+        if (!r || typeof r.text !== 'function') throw new Error('native fetch bad shape');
         transport = t;
         return shimResp(r.text, r.status);
       }
@@ -3151,7 +3153,7 @@ $('#onboard-skip').addEventListener('click', () => { closeOnboard(); haptic(0); 
   attachList($('#search-results'), 'Поиск');
   attachList($('#chart-list'), 'Обзор');
   attachList($('#lib-list'), 'Библиотека');
-  await probeLocal();
+  try { await probeLocal(); } catch {}
   const restored = restoreSession();
   if (restored) toast('Вернул прошлую сессию — нажмите ▶');
   discoverState.loaded = true;
